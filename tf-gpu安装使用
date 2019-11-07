@@ -1,0 +1,24 @@
+1、	tensorflow-gpu
+2、	gpu 驱动
+  使用apt安装
+（1）	add-apt-respository ppa:graphics-drivers/ppa
+（2）	apt-get update
+（3）	aptitude install nvidia-driver-410
+3、	cuda 安装
+    使用官网安装方式
+4、	Cudnn
+a)	下载解压tar 包
+b)	sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+c)	sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+d)	sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+
+
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export CUDA_HOME=/usr/local/cuda
+
+ cd /usr/local/cuda/lib64
+sudo rm -rf libcudnn.so libcudnn.so.7  #删除原有版本号
+sudo ln -s libcudnn.so.7.6.1 libcudnn.so.7 #生成软连接，注意自己下载的版本号
+sudo ln -s libcudnn.so.7 libcudnn.so 
+sudo ldconfig 
